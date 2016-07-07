@@ -1,23 +1,38 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+<div id="tempMsg" class="input-group">
+  <form ng-submit="main.addNewChat(username,message);">
+      <input type="text" ng-model="username" placeholder="user id" class="form-control"><br>
+      <input type="text" ng-model="message" placeholder="message" class="form-control"><br>
+      <input class="btn btn-lg btn-success" type="submit" value="+">
+    </form>
 </div>
+<div class="container-fluid panel panel-default">
+  <div class="row">
+    <div id="conversationsSide" class="convSide col-sm-4 sidenav">
+      <div ng-repeat="conv in main.conversations | orderBy:'lastTimeStamp' track by conv.convId"  ng-click="getCtrl().convClicked($event)" ng-class="{unread: main.isUnread(conv.convId)}" ng-hide="main.isNotParticipantConversation(conv.convId)" id={{::conv.convId}}>
+        <div class="">{{conv.name}}</div>
+        <div class="">{{main.getLastMessage(conv.convId)}}</div>
+      </div>
+      <!--<ul ng-repeat="conv in main.conversations" ng-class="{unread: main.isUnread($index)}" class="listGroup">
+        <li class="list-group-item">{{conv.name}}</li>
+        <li class="list-group-item">{{main.getLastMessage(conv.convId)}}</li>
+      </ul>-->
 
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
+    </div>
 
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
+    <div id="chatSide" class="chSide col-sm-8">
+      <div id="chatHeader" class="header">
+        <div id="headerBody" >
+          Title
+        </div>
+      </div>
+      <div id="chatBody" class="chatBodyStyle">
+        <div ng-repeat="msg in main.filteredMsgs track by $index"  class="" ng-hide="main.isNotParticipantMessage($index)">
+          <div ng-class="{msgSend: msg.sender==main.currentUser.id, msgReceived: msg.sender!=main.currentUser.id}">{{msg.text}}</div>
+        </div>
+      </div>
+      <div id="chatSendMessage">
+        <input type="text" ng-model="message" placeholder="message" class="form-control">
+      </div>
+    </div>
+  </sdiv>
 </div>

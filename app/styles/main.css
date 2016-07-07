@@ -59,6 +59,41 @@ body {
   margin-top: 28px;
 }
 
+.convSide{
+background-color: #f1f1f1;
+height: 100%;
+}
+
+.chSide{
+  border-left: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.chatBodyStyle{
+
+
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+}
+
+
+.unread{
+  font-weight: bold;
+}
+
+.msgSend{
+  float: right;
+}
+
+.msgReceived{
+  float: left;
+}
+
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
