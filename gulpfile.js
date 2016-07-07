@@ -2,6 +2,7 @@
 'use strict';
 
 var gulp = require('gulp');
+var gulpdebug = require('gulp-debug');
 var $ = require('gulp-load-plugins')();
 var openURL = require('open');
 var lazypipe = require('lazypipe');
@@ -58,6 +59,7 @@ gulp.task('styles', function () {
 
 gulp.task('lint:scripts', function () {
   return gulp.src(paths.scripts)
+  .pipe(gulpdebug({title:"DEBUG-INFO:"}))
     .pipe(lintScripts());
 });
 
@@ -141,6 +143,7 @@ gulp.task('bower', function () {
     .pipe(wiredep({
       ignorePath: '..'
     }))
+	.pipe(gulpdebug({title:"DEBUG-INFO:"}))
   .pipe(gulp.dest(yeoman.app));
 
 });
@@ -159,16 +162,27 @@ gulp.task('client:build', ['html', 'styles'], function () {
 
   return gulp.src(paths.views.main)
     .pipe($.useref({searchPath: [yeoman.app, '.tmp']}))
+	.pipe(gulpdebug({title:"DEBUG-INfO:"}))
     .pipe(jsFilter)
+	.pipe(gulpdebug({title:"DEBUG-INfO:"}))
     .pipe($.ngAnnotate())
+	.pipe(gulpdebug({title:"DEBUG-INfO:"}))
     .pipe($.uglify())
+	.pipe(gulpdebug({title:"DEBUG-INfO:"}))
     .pipe(jsFilter.restore())
+	.pipe(gulpdebug({title:"DEBUG-INfO:"}))
     .pipe(cssFilter)
+	.pipe(gulpdebug({title:"DEBUG-INfO:"}))
     .pipe($.minifyCss({cache: true}))
+	.pipe(gulpdebug({title:"DEBUG-INfO:"}))
     .pipe(cssFilter.restore())
+	.pipe(gulpdebug({title:"DEBUG-INfO:"}))
     .pipe($.rev())
+	.pipe(gulpdebug({title:"DEBUG-INfO:"}))
     .pipe($.revReplace())
-    .pipe(gulp.dest(yeoman.dist));
+	.pipe(gulpdebug({title:"DEBUG-INfO:"}))
+    .pipe(gulp.dest(yeoman.dist))
+	.pipe(gulpdebug({title:"DEBUG-INfO:"}));
 });
 
 gulp.task('html', function () {
