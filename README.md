@@ -13,7 +13,7 @@ Running `gulp test` will run the unit tests with karma.
 
 
 
-Design:
+##Design:
 	-	since the app will not use a real backend server there had to be a way simulate the databases and the backend server.
 	-	for the databases, localStorage has been used to simulate the databases concept as much as possible, data is saved as JSON objects.
 		- users: {username:string ,id:integer,isOnline:boolean}, and an index counter to keep track of IDs
@@ -28,12 +28,12 @@ Design:
 	for data and retrieves it as well as sending https requests to imgurUpload module and returning with the result.
 	- 	the was built using gulp and bower package manager for ease of use, the dist folder should contain last working version of the chatting app.
 
-How to use:
+##How to use:
 	-	login with any username, if it's not in localStorage it will be created and logged it, if it's already there then it will login directly.
 	- 	send and receive message in the specific browser since it uses localStorage, multiple tabs in the same brower can be opened and the change will reflect
 		if all of them.
 	- 	can send images -don't upload personal photos since it's sent to imgur-, and text with emoticons thanks to the emojify library -very neat and simple to use.
 	-	refresh the conversation page will log you out.
 
-Interface design:
+## Interface design:
 	-	the UI is very minimal and to the point, navigation for contacs and navigation for chat messages, buttons for sending images and emoticons.
