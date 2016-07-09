@@ -180,14 +180,15 @@ gulp.task('client:build', ['html', 'styles'], function () {
     .pipe($.rev())
 	.pipe(gulpdebug({title:"DEBUG-INfO:"}))
     .pipe($.revReplace())
-	.pipe(gulpdebug({title:"DEBUG-INfO:"}))
+	.pipe(gulpdebug({title:"DEBU:"}))
     .pipe(gulp.dest(yeoman.dist))
-	.pipe(gulpdebug({title:"DEBUG-INfO:"}));
+	.pipe(gulpdebug({title:"DEBUNfO:"}));
 });
 
 gulp.task('html', function () {
   return gulp.src(yeoman.app + '/views/**/*')
-    .pipe(gulp.dest(yeoman.dist + '/views'));
+    .pipe(gulp.dest(yeoman.dist + '/views'))
+	.pipe(gulpdebug({title:"DEBUG-INFO:"}));
 });
 
 gulp.task('images', function () {
@@ -202,16 +203,24 @@ gulp.task('images', function () {
 
 gulp.task('copy:extras', function () {
   return gulp.src(yeoman.app + '/*/.*', { dot: true })
-    .pipe(gulp.dest(yeoman.dist));
+    .pipe(gulp.dest(yeoman.dist))
+	.pipe(gulpdebug({title:"DEBUG-INFO:"}));
 });
 
 gulp.task('copy:fonts', function () {
   return gulp.src(yeoman.app + '/fonts/**/*')
-    .pipe(gulp.dest(yeoman.dist + '/fonts'));
+    .pipe(gulp.dest(yeoman.dist + '/fonts'))
+	.pipe(gulpdebug({title:"DEBUG-INFO:"}));
+});
+
+gulp.task('copy:bowerfonts', function () {
+  return gulp.src(yeoman.app + '/bower_components/bootstrap/fonts/**/*')
+    .pipe(gulp.dest(yeoman.dist + '/fonts'))
+	.pipe(gulpdebug({title:"DEBUG-INFO:"}));
 });
 
 gulp.task('build', ['clean:dist'], function () {
-  runSequence(['images', 'copy:extras', 'copy:fonts','bower', 'client:build']);
+  runSequence(['images', 'copy:extras', 'copy:fonts','copy:bowerfonts','bower', 'client:build']);
 });
 
 gulp.task('default', ['build']);

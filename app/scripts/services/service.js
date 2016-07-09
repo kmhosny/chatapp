@@ -14,8 +14,8 @@ angular.module('chatappApp').factory('usersStorage', function ( ) {
 
         saveStorage: function()
         {
-          localStorage.setItem(userStoreName, JSON.stringify(store.users));
-          localStorage.setItem(lastUIDStoreName, JSON.stringify(store.lastId));
+          localStorage.setItem(userStoreName, angular.toJson(store.users));
+          localStorage.setItem(lastUIDStoreName, angular.toJson(store.lastId));
         },
 
         get: function()
@@ -68,8 +68,8 @@ angular.module('chatappApp').factory('usersStorage', function ( ) {
       lastId : 0,
       saveStorage: function()
       {
-        localStorage.setItem(conversationsStoreName, JSON.stringify(store.conversations));
-        localStorage.setItem(lastCIDStoreName, JSON.stringify(store.lastId));
+        localStorage.setItem(conversationsStoreName, angular.toJson(store.conversations));
+        localStorage.setItem(lastCIDStoreName, angular.toJson(store.lastId));
       },
       get: function()
       {
@@ -114,8 +114,8 @@ angular.module('chatappApp').factory('usersStorage', function ( ) {
     lastId : 0,
     saveStorage: function()
     {
-      localStorage.setItem(messagesStoreName, JSON.stringify(store.messages));
-      localStorage.setItem(lastMIDStoreName, JSON.stringify(store.lastId));
+      localStorage.setItem(messagesStoreName, angular.toJson(store.messages));
+      localStorage.setItem(lastMIDStoreName, angular.toJson(store.lastId));
     },
     get: function()
     {
@@ -132,4 +132,18 @@ angular.module('chatappApp').factory('usersStorage', function ( ) {
     }
   };
   return store;
+}).
+factory("currentCoversation",function()
+{
+  var conversation = {
+    c:null,
+    set: function(conv) {
+      conversation.c = conv;
+    },
+    get: function()
+    {
+      return conversation.c;
+    }
+  };
+  return conversation;
 });
