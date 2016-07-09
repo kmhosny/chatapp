@@ -206,8 +206,9 @@ overflow-y: scroll;
 }
 
 .textIcon{
-  width:15px;
-  height: 15px;
+  background-image: url("../images/img.png");
+  background-repeat: no-repeat;
+  background-size: 15px 15px;
 }
 .sendImage{
   background-image: url("../images/img.png");
