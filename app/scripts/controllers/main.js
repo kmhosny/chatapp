@@ -158,7 +158,7 @@ angular.module('chatappApp')
       lastMsg = angular.copy(ctrl.getUserMessages()[index].text);
       if(lastMsg.type===2)
       {
-        lastMsg.text="<img src='/images/img.png' class='textIcon'>";
+        lastMsg.text="<div class='textIcon'></div>";
       }
       return lastMsg.text;
     };
